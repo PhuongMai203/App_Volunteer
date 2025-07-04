@@ -1,0 +1,54 @@
+# Flutter & Dart
+build/
+.dart_tool/
+.packages
+.pub/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Gradle & Caches
+.gradle/
+caches/
+android/.gradle/
+android/build/
+android/libs/**/.gradle/
+
+# APK, SO, JAR, IPA files
+*.apk
+*.so
+*.jar
+*.ipa
+
+# iOS
+ios/Pods/
+ios/.generated/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/App.framework
+ios/Flutter/engine/
+
+# VSCode/IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Logs & Temp
+*.log
+*.tmp
+*.bak
+
+# System specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Xcode generated
+*.xcworkspace
+*.xcuserdata
+*.xcuserstate
+
+# Fastlane, Firebase (nếu dùng)
+fastlane/report.xml
+firebase-debug.log

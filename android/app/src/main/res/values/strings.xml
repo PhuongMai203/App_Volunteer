@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tên ứng dụng -->
+    <string name="app_name">help_connect</string>
+
+    <!-- ID Facebook -->
+    <string name="facebook_app_id">1885889482249914</string>
+    <string name="fb_login_protocol_scheme">fb1885889482249914</string>
+    <string name="facebook_client_token">c055bf87d74ddb29633d8f7cf2d24dcd</string>
+
+    <!-- Các chuỗi khác nếu có -->
+    <string name="welcome_message">Chào mừng bạn đến với ứng dụng!</string>
+    <string name="default_notification_channel_id">default_channel</string>
+</resources>
