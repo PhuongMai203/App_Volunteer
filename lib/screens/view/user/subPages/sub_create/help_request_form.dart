@@ -7,7 +7,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import '../../../../../components/app_colors.dart';
-import '../../widgets/landing/landing_page_widgets.dart';
 
 typedef OnSubmitCallback = void Function(Map<String, dynamic> requestData);
 
@@ -569,7 +568,7 @@ class _HelpRequestFormState extends State<HelpRequestForm> {
                         Icon(
                           category['icon'] != null
                               ? IconData(category['icon'], fontFamily: 'MaterialIcons')
-                              : Icons.help_outline,
+                              : Icons.category,
                           size: 18,
                           color: isSelected ? Colors.orange : Colors.grey[700],
                         ),

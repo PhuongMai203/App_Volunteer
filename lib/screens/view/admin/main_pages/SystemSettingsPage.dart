@@ -37,11 +37,17 @@ class _SystemSettingsScreenState extends State<SystemSettingsScreen> {
   final List<IconData> _iconOptions = [
     Icons.star,
     Icons.favorite,
-    Icons.campaign,
-    Icons.volunteer_activism,
     Icons.school,
     Icons.sports_volleyball,
+    Icons.accessible,
+    Icons.eco,
+    Icons.money_off,
+    Icons.warning,
+    Icons.groups,
+    Icons.local_hospital,
+    Icons.home,
   ];
+
   IconData? _selectedIcon;
 
   @override
@@ -284,7 +290,7 @@ class _SystemSettingsScreenState extends State<SystemSettingsScreen> {
                       backgroundColor: Color(0xFFFFCCBC),
                       child: iconCode != null
                           ? Icon(IconData(iconCode, fontFamily: 'MaterialIcons'), color: Color(0xFFE65100))
-                          : Icon(Icons.help_outline, color: Color(0xFFE65100)), // fallback icon khi bị null
+                          : Icon(Icons.category, color: Color(0xFFE65100)), // fallback icon khi bị null
                     ),
                     title: Text(_categories[index]['name']),
                     trailing: IconButton(

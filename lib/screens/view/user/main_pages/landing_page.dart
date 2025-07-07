@@ -16,6 +16,7 @@ import '../campaign/featured_campaigns.dart';
 import '../components/custom_bottom_nav_bar.dart';
 import '../campaign/upcoming_campaigns.dart';
 import '../widgets/bookmarked.dart';
+import '../widgets/category_section.dart';
 import '../widgets/landing/SupportRequestForm.dart';
 import '../widgets/landing/home_widgets.dart' hide NewsFeedPage, SupportPage;
 import '../widgets/landing/landing_page_widgets.dart';
@@ -191,7 +192,6 @@ class _LandingPageState extends State<LandingPage> {
         final screenWidth = constraints.maxWidth; // Use constraints.maxWidth
         final crossAxisCount = screenWidth > 900 ? 8 : (screenWidth > 600 ? 6 : 3);
         final itemsPerPage = crossAxisCount * 2;
-        final totalPages = (categories.length / itemsPerPage).ceil();
 
         return Container(
           decoration: const BoxDecoration(
@@ -206,14 +206,11 @@ class _LandingPageState extends State<LandingPage> {
                   context,
                   onSearchChanged: (value) => setState(() => _searchQuery = value),
                 ),
-                buildCategorySection(
-                  crossAxisCount,
-                  itemsPerPage,
-                  totalPages,
-                  _categoryPageController,
-                  onCategorySelected,
+                CategorySection(
+                  onCategorySelected: onCategorySelected,
                   showBackgroundImage: true,
                 ),
+
                 const SizedBox(height: 15),
                 TopContributorsWidget(),
                 Padding(

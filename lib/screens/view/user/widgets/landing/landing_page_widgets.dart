@@ -10,22 +10,6 @@ import '../../../../../components/search_bar.dart';
 import '../bookmarked.dart';
 import '../notifications/notification_icon.dart';
 
-List<Map<String, dynamic>> categories = [
-  {'icon': Icons.fastfood, 'title': 'hunger'.tr()},
-  {'icon': Icons.child_friendly, 'title': 'children'.tr()},
-  {'icon': Icons.elderly, 'title': 'elderly'.tr()},
-  {'icon': Icons.money_off, 'title': 'poor'.tr()},
-  {'icon': Icons.accessible, 'title': 'disabled'.tr()},
-  {'icon': Icons.local_hospital, 'title': 'serious_illness'.tr()},
-  {'icon': Icons.groups, 'title': 'ethnic_minority'.tr()},
-  {'icon': Icons.business, 'title': 'migrant_workers'.tr()},
-  {'icon': Icons.home, 'title': 'homeless'.tr()},
-  {'icon': Icons.eco, 'title': 'environment'.tr()},
-  {'icon': Icons.bar_chart, 'title': 'poverty_alleviation'.tr()},
-  {'icon': Icons.warning, 'title': 'natural_disaster'.tr()},
-  {'icon': Icons.school, 'title': 'education'.tr()},
-];
-
 Widget buildHeader(
     BuildContext context, {
       required Function(String) onSearchChanged,
@@ -77,13 +61,15 @@ Widget buildHeader(
 
 // Sửa: thêm callback onCategorySelected vào đây
 Widget buildCategorySection(
-    int crossAxisCount, // Tham số này sẽ ít quan trọng hơn với Wrap
-    int itemsPerPage,   // Tham số này vẫn dùng để chia trang
+    List<Map<String, dynamic>> categories,
+    int crossAxisCount,
+    int itemsPerPage,
     int totalPages,
     PageController pageController,
     Function(String) onCategorySelected, {
       bool showBackgroundImage = false,
     }) {
+
   return SizedBox(
     // Điều chỉnh chiều cao tổng thể của section
     height: showBackgroundImage ? 390 : 240, // Đã giảm từ 420/320
@@ -152,7 +138,7 @@ Widget buildCategorySection(
                                     CircleAvatar(
                                       radius: 24,
                                       backgroundColor: Colors.orange[100],
-                                      child: Icon(item['icon'], color: Colors.deepOrange),
+                                      child: Icon(item['icon'] ?? Icons.category, color: Colors.deepOrange),
                                     ),
                                     const SizedBox(height: 4), // Khoảng cách nhỏ giữa icon và text
                                     Text(

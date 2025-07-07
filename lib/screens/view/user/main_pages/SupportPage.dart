@@ -12,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:help_connect/components/app_colors.dart';
 import '../../../../components/app_gradients.dart';
 import '../campaign/upcoming_campaigns.dart';
+import '../widgets/category_section.dart';
 import '../widgets/google_map.dart';
 import '../widgets/landing/landing_page_widgets.dart';
 
@@ -129,7 +130,6 @@ class _SupportPageState extends State<SupportPage> {
     double screenWidth = MediaQuery.of(context).size.width;
     int crossAxisCount = screenWidth >= 900 ? 5 : screenWidth >= 600 ? 4 : 3;
     int itemsPerPage = crossAxisCount * 2;
-    int totalPages = (categories.length / itemsPerPage).ceil();
 
     return Scaffold(
       appBar: AppBar(
@@ -173,13 +173,11 @@ class _SupportPageState extends State<SupportPage> {
                         ),
                       ),
                       SizedBox(height: 8),
-                      buildCategorySection(
-                        crossAxisCount,
-                        itemsPerPage,
-                        totalPages,
-                        _pageController,
-                        onCategorySelected,
+                      CategorySection(
+                        onCategorySelected: onCategorySelected,
+                        showBackgroundImage: true,
                       ),
+
                       SizedBox(height: 18),
                       Container(
                         width: screenWidth * 0.9,
