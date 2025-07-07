@@ -635,5 +635,9 @@
   "certificate_location": "場所: ハノイ",
   "certificate_organizer": "主催者代表",
   "certificate_representative": "代表者",
-  "certificate_signature_hint": "（署名・氏名）"
+  "certificate_signature_hint": "（署名・氏名）",
+  "statistic": "統計的",
+  "system_settings": "システム設定",
+  "there_no_users_campaign":"同じキャンペーンに参加しているユーザーはいません",
+  "no_content": "コンテンツがありません"
 }

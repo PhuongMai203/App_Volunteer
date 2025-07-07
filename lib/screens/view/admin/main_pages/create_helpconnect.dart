@@ -52,12 +52,6 @@ class _CreateHelpConnectPageState extends State<CreateHelpConnectPage> {
     return Scaffold(
       backgroundColor: AppColors.pureWhite,
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColors.pureWhite),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         backgroundColor: AppColors.sunrise,
         title: Text(
           "home_create_campaign".tr(),

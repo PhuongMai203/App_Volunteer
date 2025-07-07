@@ -12,7 +12,7 @@ part 'sign_in_state.dart';
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final UserRepository _userRepository;
 
-  // Tài khoản admin cứng
+  // Tài khoản admin cứng"sign_in_error"
   final Map<String, String> hardcodedAdmins = {
     'admin1@gmail.com': 'Btpmai2003@',
     'admin2@gmail.com': 'Btpmai2003@',

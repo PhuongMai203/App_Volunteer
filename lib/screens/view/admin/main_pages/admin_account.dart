@@ -61,7 +61,7 @@ class _AdminAccountPageState extends State<AdminAccountPage> {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   height: 1.3,
-                  color: Colors.deepOrange.shade900,
+                  color: Color(0xFFE65100),
                 ),
               ),
             ),
@@ -72,7 +72,7 @@ class _AdminAccountPageState extends State<AdminAccountPage> {
             Center(
               child: Text(
                 "support_method".tr(),
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.deepOrange.shade900 ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFFE65100) ),
               ),
             ),
             const CompanyPieChart(),
@@ -80,7 +80,7 @@ class _AdminAccountPageState extends State<AdminAccountPage> {
             Center(
               child: Text(
                 "campaign_type".tr(),
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.deepOrange.shade900 ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFFE65100) ),
               ),
             ),
             Campaignbarchart(),
@@ -88,7 +88,7 @@ class _AdminAccountPageState extends State<AdminAccountPage> {
             Center(
               child: Text(
                 "campaign_status".tr(),
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.deepOrange.shade900 ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFFE65100)),
               ),
             ),
             const SizedBox(height: 50),

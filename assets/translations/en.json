@@ -634,7 +634,12 @@
   "certificate_location": "Location: Hanoi",
   "certificate_organizer": "On behalf of the organizing committee",
   "certificate_representative": "Representative",
-  "certificate_signature_hint": "(Signature and full name)"
+  "certificate_signature_hint": "(Signature and full name)",
+  "statistic": "Statistics",
+  "system_settings": "System settings",
+
+  "there_no_users_campaign":"No users in the same campaign",
+  "no_content": "No content"
 
 
 

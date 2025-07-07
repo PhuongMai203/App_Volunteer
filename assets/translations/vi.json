@@ -641,6 +641,11 @@
   "certificate_location": "Địa điểm: Hà Nội",
   "certificate_organizer": "TM. Ban tổ chức",
   "certificate_representative": "Người đại diện",
-  "certificate_signature_hint": "(Ký, ghi rõ họ tên)"
+  "certificate_signature_hint": "(Ký, ghi rõ họ tên)",
+  "statistic": "Thống kê",
+  "system_settings": "Cài đặt hệ thống",
+
+  "there_no_users_campaign":"Không có người dùng nào cùng chiến dịch",
+  "no_content": "Không có nội dung"
 }
 

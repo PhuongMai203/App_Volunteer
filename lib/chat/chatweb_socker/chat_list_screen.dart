@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -106,7 +107,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
 
       recentChats.add({
         'uid': otherUserId,
-        'lastMessage': data['message'] ?? '(Không có nội dung)',
+        'lastMessage': data['message'] ?? "no_content".tr(),
         'timestamp': data['timestamp'],
         'isRead': isRead,
         ...userData,
@@ -127,7 +128,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
           backgroundColor: AppColors.sunrise,
           automaticallyImplyLeading: false,
           title: Text(
-            'Trò chuyện',
+            "chat_title".tr(),
             style: GoogleFonts.poppins(
               fontSize: 23,
               fontWeight: FontWeight.w600,
@@ -139,8 +140,8 @@ class _ChatListScreenState extends State<ChatListScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "Vui lòng đăng nhập để sử dụng tính năng nhắn tin",
+            Text(
+              "chat_login_required".tr(),
               style: TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
             ),
@@ -159,7 +160,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   ),
-                  child: const Text("Đăng nhập", style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600)),
+                  child: Text( "sign_in".tr(), style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600)),
                 ),
                 const SizedBox(width: 16),
                 OutlinedButton(
@@ -174,7 +175,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   ),
-                  child: Text("Đăng ký", style: TextStyle(color: AppColors.sunrise, fontSize: 17, fontWeight: FontWeight.w600)),
+                  child: Text("sign_up".tr(), style: TextStyle(color: AppColors.sunrise, fontSize: 17, fontWeight: FontWeight.w600)),
                 ),
               ],
             ),
@@ -191,7 +192,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
         backgroundColor: AppColors.sunrise,
         title: Padding(
           padding: const EdgeInsets.only(left: 16.0),
-          child: Text('Trò chuyện',
+          child: Text("chat_title".tr(),
             style: GoogleFonts.agbalumo(
               fontSize: 35,
               fontWeight: FontWeight.w600,
@@ -204,9 +205,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text("Chọn người để nhắn tin", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("chat_select_user".tr(), style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           ),
           SizedBox(
             height: 100,
@@ -215,7 +216,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
               builder: (context, snapshot) {
                 if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
                 final users = snapshot.data!;
-                if (users.isEmpty) return const Center(child: Text("Không có người dùng nào cùng chiến dịch"));
+                if (users.isEmpty) return Center(child: Text("there_no_users_campaign".tr()));
 
                 return ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -255,9 +256,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
             ),
           ),
           const Divider(),
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text("Đã từng trò chuyện", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            child: Text("chat_recent_conversations".tr(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           ),
           Expanded(
             child: FutureBuilder<List<Map<String, dynamic>>>(
@@ -265,13 +266,13 @@ class _ChatListScreenState extends State<ChatListScreen> {
               builder: (context, snapshot) {
                 if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
                 final chats = snapshot.data!;
-                if (chats.isEmpty) return const Center(child: Text("Chưa có cuộc trò chuyện nào"));
+                if (chats.isEmpty) return Center(child: Text("chat_no_conversations".tr()));
 
                 return ListView.builder(
                   itemCount: chats.length,
                   itemBuilder: (context, index) {
                     final chat = chats[index];
-                    final name = chat['name'] ?? 'Người dùng';
+                    final name = chat['name'] ?? "user".tr();
                     final avatarUrl = chat['avatarUrl'] ?? '';
                     final message = (chat['lastMessage'] as String?)?.trim();
                     final displayMessage = message != null && message.isNotEmpty ? message : "(Không có tin nhắn)";

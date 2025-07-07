@@ -1,4 +1,3 @@
-// File: lib/pages/help_request_form.dart
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -509,80 +508,100 @@ class _HelpRequestFormState extends State<HelpRequestForm> {
     );
   }
   Widget _buildCategoryGrid() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 6.0),
-          child: Text(
-            "categorys".tr(),
-            style: TextStyle(
-              fontSize: 16, // Giảm font tiêu đề
-              color: AppColors.deepOcean,
-            ),
-          ),
-        ),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, // Tăng số cột để ô nhỏ hơn
-            childAspectRatio: 1.4, // Điều chỉnh tỷ lệ khung
-            crossAxisSpacing: 6, // Giảm khoảng cách ngang
-            mainAxisSpacing: 6, // Giảm khoảng cách dọc
-          ),
-          itemCount: categories.length,
-          itemBuilder: (context, index) {
-            final category = categories[index];
-            final isSelected = selectedCategory == category['title'];
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedCategory = category['title'];
-                });
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: isSelected ? AppColors.peach : Colors.white,
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(
-                    color: isSelected ? AppColors.sunrise : Colors.grey[300]!,
-                    width: isSelected ? 2 : 1,
-                  ),
-                ),
-                padding: EdgeInsets.symmetric(vertical: 3),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(category['icon'],
-                        size: 18,
-                        color: isSelected ? Colors.orange : Colors.grey[700]),
-                    SizedBox(height: 2),
-                    Text(
-                      category['title'],
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 13, // Giảm font chữ
-                        color: isSelected ? Colors.orange : Colors.grey[700],
-                      ),
-                    ),
-                  ],
+    return FutureBuilder<DocumentSnapshot>(
+      future: FirebaseFirestore.instance.collection('system_settings').doc('main').get(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator(color: Colors.orange));
+        }
+        if (snapshot.hasError || !snapshot.hasData || !snapshot.data!.exists) {
+          return Center(child: Text('Lỗi khi tải danh mục'));
+        }
+
+        final data = snapshot.data!.data() as Map<String, dynamic>;
+        final List categories = data['categories'] ?? [];
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 6.0),
+              child: Text(
+                "categorys".tr(),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFFE65100),
                 ),
               ),
-            );
-          },
-        ),
-        if (selectedCategory == null)
-          Padding(
-            padding: const EdgeInsets.only(top: 4.0),
-            child: Text(
-              "please_complete_all_info".tr(),
-              style: TextStyle(color: Colors.red, fontSize: 12),
             ),
-          ),
-      ],
+            GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 1.4,
+                crossAxisSpacing: 6,
+                mainAxisSpacing: 6,
+              ),
+              itemCount: categories.length,
+              itemBuilder: (context, index) {
+                final category = categories[index];
+                final isSelected = selectedCategory == category['name'];
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedCategory = category['name'];
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: isSelected ? AppColors.peach : Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border.all(
+                        color: isSelected ? AppColors.sunrise : Colors.grey[300]!,
+                        width: isSelected ? 2 : 1,
+                      ),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 3),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          category['icon'] != null
+                              ? IconData(category['icon'], fontFamily: 'MaterialIcons')
+                              : Icons.help_outline,
+                          size: 18,
+                          color: isSelected ? Colors.orange : Colors.grey[700],
+                        ),
+                        SizedBox(height: 2),
+                        Text(
+                          category['name'],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: isSelected ? Colors.orange : Colors.grey[700],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            if (selectedCategory == null)
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Text(
+                  "please_complete_all_info".tr(),
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
+          ],
+        );
+      },
     );
   }
+
   Widget _buildDatePickerField(String label, DateTime? selectedDate, VoidCallback onTap) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -592,7 +611,7 @@ class _HelpRequestFormState extends State<HelpRequestForm> {
           labelText: label,
           labelStyle: TextStyle(color: AppColors.deepOcean),
           border: OutlineInputBorder(),
-          suffixIcon: Icon(Icons.calendar_today),
+          suffixIcon: Icon(Icons.calendar_today, color: Color(0xFFE65100),),
           filled: true,
           fillColor: Colors.white,
           enabledBorder: OutlineInputBorder(
@@ -618,7 +637,7 @@ class _HelpRequestFormState extends State<HelpRequestForm> {
         style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
-          color: AppColors.deepOcean,
+          color: Color(0xFFE65100),
         ),
       ),
     );

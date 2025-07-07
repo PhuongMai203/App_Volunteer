@@ -20,9 +20,9 @@ class UsersAndBusinessesPage extends StatelessWidget {
             Container(
               color: Colors.white,
               child: TabBar(
-                labelColor: AppColors.sunrise,
+                labelColor: Color(0xFFE65100),
                 unselectedLabelColor: Colors.grey,
-                indicatorColor: AppColors.sunrise,
+                indicatorColor: Color(0xFFE65100),
                 tabs: [
                   Tab(icon: Icon(Icons.people), text: 'legendVolunteers'.tr()),
                   Tab(icon: Icon(Icons.business), text: "organization".tr()),

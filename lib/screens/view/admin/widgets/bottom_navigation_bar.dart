@@ -39,8 +39,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
           label: "message".tr(),
         ),
          BottomNavigationBarItem(
-          icon:const Icon(Icons.manage_accounts),
-          label:"account".tr(),
+          icon:const Icon(Icons.bar_chart),
+          label:"statistic".tr(),
+        ),
+        BottomNavigationBarItem(
+          icon:const Icon(Icons.settings),
+          label:"system_settings".tr(),
         ),
       ],
     );

@@ -27,9 +27,9 @@ class Campaign extends StatelessWidget {
             Container(
               color: Colors.white,
               child: TabBar(
-                labelColor: AppColors.sunrise,
+                labelColor: Color(0xFFE65100),
                 unselectedLabelColor: Colors.grey,
-                indicatorColor: AppColors.sunrise,
+                indicatorColor: Color(0xFFE65100),
                 tabs: [
                   Tab(icon: Icon(Icons.schedule), text: "upcoming_campaign".tr()),
                   Tab(icon: Icon(Icons.done_all), text: "campaign_completed".tr()),

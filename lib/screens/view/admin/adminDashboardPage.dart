@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:help_connect/components/app_colors.dart';
 import '../business/chat/chat_bn.dart';
+import 'main_pages/SystemSettingsPage.dart';
 import 'main_pages/admin_account.dart';
 import 'main_pages/campaign.dart';
 import 'main_pages/users_and_businesses_page.dart';
@@ -51,6 +52,8 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
         return ChatBn();
       case 4:
         return AdminAccountPage( );
+      case 5:
+        return SystemSettingsScreen( );
       default:
         return const SizedBox();
     }

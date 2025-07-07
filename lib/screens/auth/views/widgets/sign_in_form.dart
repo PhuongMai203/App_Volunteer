@@ -287,7 +287,7 @@ class _SignInFormState extends State<SignInForm> {
           Text("no_account".tr(), style: const TextStyle(fontSize: 12, color: Colors.black87)),
           TextButton(
             onPressed: () {
-              final type = widget.userType ?? 'volunteer';
+              final type = widget.userType ?? 'user';
               Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen(userType: type)));
             },
             child: Text("signup".tr(), style: const TextStyle(fontSize: 16, color: AppColors.sunrise, fontWeight: FontWeight.bold, decoration: TextDecoration.underline)),
@@ -302,7 +302,7 @@ class _SignInFormState extends State<SignInForm> {
         children: [
           GestureDetector(
             onTap: () async {
-              final userCredential = await GoogleSignInService.signInWithGoogle(userType: widget.userType ?? 'volunteer');
+              final userCredential = await GoogleSignInService.signInWithGoogle(userType: widget.userType ?? 'user');
               if (userCredential != null) {
                 final firebaseUser = userCredential.user;
                 if (firebaseUser != null) {
